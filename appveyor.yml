@@ -1,0 +1,102 @@
+-
+  branches:
+    only:
+      - master
+  configuration: [Debug]
+  os: Visual Studio 2017
+  version: 1.0.0-{branch}-{build}
+  shallow_clone: true
+  environment:
+    nodejs_version: "9"
+  install:
+    - ps: Install-Product node $env:nodejs_version
+    - cmd: npm install -g npm --loglevel=warn
+    - cmd: npm install -g bower --loglevel=warn
+    - cmd: npm install -g gulp --loglevel=warn
+    - cmd: cd src\Aggregit.Web
+    - cmd: bower install --force-latest  --quiet
+    - cmd: npm install --loglevel=warn
+    - cmd: cd ..\..
+    - cmd: node --version
+    - ps: dotnet --info
+  before_build:
+    - cmd: dotnet restore .\Aggregit.sln
+  build:
+    project: Aggregit.sln
+    publish_wap: true
+    verbosity: minimal
+  # to run your custom scripts instead of automatic tests, this is needed for now for dotnet core apps
+  test_script:
+    - ps: .\test.ps1
+  # scripts to run after tests
+  after_test:
+    - cmd: dotnet publish src\Aggregit.Web\ -o ..\..\AggregitWebDeploy --configuration Release
+
+  #---------------------------------#
+  #      artifacts configuration    #
+  #---------------------------------#
+  artifacts:
+    - path: AggregitWebDeploy
+      name: AggregitWebDeploy
+      type: WebDeployPackage
+
+  #---------------------------------#
+  #     deployment configuration    #
+  #---------------------------------#
+
+  # providers: Local, FTP, WebDeploy, AzureCS, AzureBlob, S3, NuGet, Environment
+  # provider names are case-sensitive!
+  deploy:
+    # Web Deploy deployment provider settings
+    - provider: WebDeploy
+      server:  https://aggregit.scm.azurewebsites.net:443/msdeploy.axd?site=Aggregit
+      website: Aggregit
+      username: $Aggregit
+      password:
+        secure: 0SF08s1rJFl/D4wqHzjtXqp7AlT5HN/7q0n8Wx1yqaqjmi9RDHS7QJBPG5Msc130QSFh3Mtunrqg7mWuO9iyLQ==
+      ntlm: false
+      remove_files: false
+      app_offline: true
+      do_not_use_checksum: true           # do not use check sum for comparing source and destination files. By default checksums are used.
+      sync_retry_attempts: 2              # sync attempts, max
+      sync_retry_interval: 2000           # timeout between sync attempts, milliseconds
+      aspnet_core: true                   # artifact zip contains ASP.NET Core application
+      aspnet_core_force_restart: true
+    # Deploy to GitHub Releases
+    - provider: GitHub
+      release: v$(appveyor_build_version)
+      auth_token:
+        secure: R8frI8mgxikrHkqB4EY0i8k6wW2Ud14+BD80gMvez+7gaMKxnAkl0OZDkq5Zfn3E
+      artifact: AggregitWebDeploy.zip           # upload all NuGet packages to release assets
+      draft: false
+      prerelease: false
+      on:
+        branch: release                # release from release branch only
+        appveyor_repo_tag: false       # deploy on tag push only
+-
+  configuration: Debug
+  os: Visual Studio 2017
+  version: 1.0.0.{build}
+  shallow_clone: true
+  environment:
+    nodejs_version: "9"
+  install:
+    - ps: Install-Product node $env:nodejs_version
+    - cmd: npm install -g npm --loglevel=warn
+    - cmd: npm install -g bower --loglevel=warn
+    - cmd: npm install -g gulp --loglevel=warn
+    - cmd: cd src\Aggregit.Web
+    - cmd: bower install --force-latest  --quiet
+    - cmd: npm install --loglevel=warn
+    - cmd: cd ..\..
+    - cmd: node --version
+    - ps: dotnet --info
+  before_build:
+    - cmd: dotnet restore .\Aggregit.sln
+  build:
+    project: Aggregit.sln
+    publish_wap: false
+    verbosity: minimal
+  # to run your custom scripts instead of automatic tests, this is needed for now for dotnet core apps
+  test_script:
+    - ps: .\test.ps1
