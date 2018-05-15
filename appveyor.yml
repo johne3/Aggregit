@@ -11,10 +11,10 @@
   install:
     - ps: Install-Product node $env:nodejs_version
     - cmd: npm install -g npm --loglevel=warn
-    - cmd: npm install -g bower --loglevel=warn
+    #- cmd: npm install -g bower --loglevel=warn
     - cmd: npm install -g gulp --loglevel=warn
     - cmd: cd src\Aggregit.Web
-    - cmd: bower install --force-latest  --quiet
+    #- cmd: bower install --force-latest  --quiet
     - cmd: npm install --loglevel=warn
     - cmd: cd ..\..
     - cmd: node --version
@@ -83,10 +83,10 @@
   install:
     - ps: Install-Product node $env:nodejs_version
     - cmd: npm install -g npm --loglevel=warn
-    - cmd: npm install -g bower --loglevel=warn
+    #- cmd: npm install -g bower --loglevel=warn
     - cmd: npm install -g gulp --loglevel=warn
     - cmd: cd src\Aggregit.Web
-    - cmd: bower install --force-latest  --quiet
+    #- cmd: bower install --force-latest  --quiet
     - cmd: npm install --loglevel=warn
     - cmd: cd ..\..
     - cmd: node --version
