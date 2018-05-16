@@ -23,4 +23,4 @@ type SampleDataController () =
     [<HttpGet("[action]")>]
     member this.WeatherForecasts() =
         let rnd = new Random()
-        Enumerable.Range(1, 5).Select(fun x -> new WeatherForcast(DateTime.Now.AddDays(float(x)).ToString("d"), float(rnd.Next(-20, 55)), summaries.[rnd.Next(summaries.Length)]))
+        Enumerable.Range(1, 5).Select(fun x -> new WeatherForcast(DateTime.Now.AddDays(float(x)).ToString("d"), float(rnd.Next(-20, 55)), summaries.[rnd.Next(15)]))
