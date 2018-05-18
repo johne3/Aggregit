@@ -8,6 +8,7 @@ open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
+open Microsoft.AspNetCore.SpaServices.Webpack
 
 type Startup private () =
     new (configuration: IConfiguration) as this =
@@ -24,6 +25,9 @@ type Startup private () =
 
         if (env.IsDevelopment()) then
             app.UseDeveloperExceptionPage() |> ignore
+            let opt = new WebpackDevMiddlewareOptions()
+            opt.HotModuleReplacement <- true
+            app.UseWebpackDevMiddleware(opt) |> ignore
         else
             app.UseExceptionHandler("/Home/Error") |> ignore
 
