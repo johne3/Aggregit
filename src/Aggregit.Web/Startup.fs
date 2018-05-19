@@ -9,6 +9,7 @@ open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.AspNetCore.SpaServices.Webpack
+open Aggregit.Web.Options
 
 type SpaDefault = { controller:string; action:string }
 
@@ -21,6 +22,7 @@ type Startup private () =
     member this.ConfigureServices(services: IServiceCollection) =
         // Add framework services.
         services.AddMvc() |> ignore
+        services.Configure<GitHubApiOptions>(fun opt -> this.Configuration.GetSection("GitHubApi").Bind(opt)) |> ignore
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     member this.Configure(app: IApplicationBuilder, env: IHostingEnvironment) =

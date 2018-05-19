@@ -9,7 +9,8 @@
  </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Controllers\SampleDataController.fs" />
+    <Compile Include="Options\GitHubApiOptions.fs" />
+    <Compile Include="ViewModels\Home\IndexViewModel.fs" />
     <Compile Include="Controllers\HomeController.fs" />
     <Compile Include="Models\ErrorViewModel.fs" />
     <Compile Include="Startup.fs" />
@@ -19,11 +20,11 @@
   <ItemGroup>
     <Content Include="ClientApp\app\components\app\app.component.css" />
     <Content Include="ClientApp\app\components\app\app.component.html" />
-    <Content Include="ClientApp\app\components\counter\counter.component.html" />
-    <Content Include="ClientApp\app\components\fetchdata\fetchdata.component.html" />
+    <Content Include="ClientApp\app\components\login\login.component.css" />
+    <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
+    <Content Include="ClientApp\app\components\login\login.component.html" />
+    <Content Include="ClientApp\app\components\home\home.component.css" />
     <Content Include="ClientApp\app\components\home\home.component.html" />
-    <Content Include="ClientApp\app\components\navmenu\navmenu.component.css" />
-    <Content Include="ClientApp\app\components\navmenu\navmenu.component.html" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,11 +47,12 @@
     <TypeScriptCompile Include="ClientApp\app\app.server.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\app.shared.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\app\app.component.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\counter\counter.component.spec.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\counter\counter.component.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\fetchdata\fetchdata.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\home\home.component.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\navmenu\navmenu.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\base.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\gitHub.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\user.ts" />
     <TypeScriptCompile Include="ClientApp\boot.browser.ts" />
     <TypeScriptCompile Include="ClientApp\boot.server.ts" />
     <TypeScriptCompile Include="ClientApp\test\boot-tests.ts" />

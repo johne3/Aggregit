@@ -1,10 +1,18 @@
+@model Aggregit.Web.ViewModels.Home.IndexViewModel
+@inject Microsoft.Extensions.Options.IOptions<Aggregit.Web.Options.GitHubApiOptions> GitHubApiOptions
 @{
     ViewData["Title"] = "Home Page";
 }
-
-<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
+<app></app>
 
 <script src="~/dist/vendor.js" asp-append-version="true"></script>
-@section scripts {
-    <script src="~/dist/main-client.js" asp-append-version="true"></script>
-}
+    @section scripts {
+<script src="~/dist/main-client.js" asp-append-version="true"></script>
+<script>
+    var accessToken = '@Model.AccessToken';
+</script>
+<script>
+    window.localStorage.setItem("clientId", '@GitHubApiOptions.Value.ClientId')
+    window.localStorage.setItem('accessToken', '@Model.AccessToken');
+</script>
+    }
