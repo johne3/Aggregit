@@ -10,6 +10,8 @@ open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.AspNetCore.SpaServices.Webpack
 
+type SpaDefault = { controller:string; action:string }
+
 type Startup private () =
     new (configuration: IConfiguration) as this =
         Startup() then
@@ -25,9 +27,7 @@ type Startup private () =
 
         if (env.IsDevelopment()) then
             app.UseDeveloperExceptionPage() |> ignore
-            let opt = new WebpackDevMiddlewareOptions()
-            opt.HotModuleReplacement <- true
-            app.UseWebpackDevMiddleware(opt) |> ignore
+            app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions(HotModuleReplacement = true)) |> ignore
         else
             app.UseExceptionHandler("/Home/Error") |> ignore
 
@@ -37,6 +37,8 @@ type Startup private () =
             routes.MapRoute(
                 name = "default",
                 template = "{controller=Home}/{action=Index}/{id?}") |> ignore
+
+            routes.MapSpaFallbackRoute("spa-fallback", { controller = "Home"; action = "Index" }) |> ignore
             ) |> ignore
 
     member val Configuration : IConfiguration = null with get, set
