@@ -10,9 +10,8 @@ export class GitHubService extends BaseService {
         super();
     }
 
-    getAuthenticationUser() {
+    getAuthenticatedUser() {
         var url = "https://api.github.com/user";
-
         return this.http.get(url, this.jwt()).map((response: Response) => response);
     }
 }

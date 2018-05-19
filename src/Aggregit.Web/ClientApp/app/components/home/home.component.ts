@@ -31,13 +31,12 @@ export class HomeComponent {
             let user = new User();
             user.accessToken = accessToken;
             localStorage.setItem('currentUser', JSON.stringify(user))
-            return;
         } else {
             this.router.navigate(['/login']);
             return;
         }
 
-        this.gitHubService.getAuthenticationUser()
+        this.gitHubService.getAuthenticatedUser()
             .subscribe(
                 data => {
                     this.gitHubUser = JSON.parse(data.text());
@@ -48,7 +47,9 @@ export class HomeComponent {
     }
 
     signOut() {
-        localStorage.clear();
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('currentUser');
+
         this.router.navigate(['/login']);
     }
 }

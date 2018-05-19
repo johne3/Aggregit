@@ -7,6 +7,7 @@
     <base href="~/" />
     <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
     @Html.Raw(snippet.FullScript)
+    @RenderSection("headScripts", required: false)
 </head>
 <body>
     @RenderBody()
