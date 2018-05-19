@@ -2,6 +2,7 @@
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { User } from '../models/index';
 import { BaseService } from './base.service';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GitHubService extends BaseService {
