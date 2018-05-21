@@ -9,7 +9,8 @@ import { Http } from '@angular/http';
 export class LoginComponent {
     login() {
         var clientId = localStorage.getItem("clientId");
-        var authUrl = "https://github.com/login/oauth/authorize?client_id=" + clientId;
+        var scopes = "repo, user, read:org";
+        var authUrl = "https://github.com/login/oauth/authorize?client_id=" + clientId + "&scope=" + scopes;
 
         window.location.href = authUrl;
     }

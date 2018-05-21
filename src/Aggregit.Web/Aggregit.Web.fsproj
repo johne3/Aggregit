@@ -9,6 +9,7 @@
  </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Options\GitHubApiOptions.fs" />
     <Compile Include="ViewModels\Home\IndexViewModel.fs" />
     <Compile Include="Controllers\HomeController.fs" />
@@ -48,14 +49,21 @@
     <TypeScriptCompile Include="ClientApp\app\app.shared.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\app\app.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\home\home.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\github.service\Organization.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\base.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\index.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\gitHub.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\github.service\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\github.service\gitHubUser.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\index.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\user.ts" />
     <TypeScriptCompile Include="ClientApp\boot.browser.ts" />
     <TypeScriptCompile Include="ClientApp\boot.server.ts" />
     <TypeScriptCompile Include="ClientApp\test\boot-tests.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

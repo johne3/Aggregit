@@ -1,3 +1,3 @@
 ﻿export class User {
-    accessToken: string;
+    accessToken: string | undefined;
 }
