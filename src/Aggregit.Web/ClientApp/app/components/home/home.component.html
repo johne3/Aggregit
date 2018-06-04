@@ -44,7 +44,7 @@
                     <tr>
                         <th>Repo</th>
                         <th>Title</th>
-                        <th>Labels</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,7 @@
                         <td>{{issue.repository.name}}</td>
                         <td><a href="{{issue.url}}" target="_blank">{{issue.title}}</a></td>
                         <td>
-                            <a *ngFor="let label of issue.labels.nodes">{{label.name}}&nbsp;</a>
+                            <a *ngFor="let label of issue.labels.nodes" [ngStyle]="{'background-color': '#' + label.color, 'color': getTextColor(label)}" class="githubLabel">{{label.name}}&nbsp;</a>
                         </td>
                     </tr>
                 </tbody>

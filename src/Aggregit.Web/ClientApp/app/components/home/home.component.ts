@@ -107,4 +107,23 @@ export class HomeComponent {
         //        });
         //    });
     }
+
+    getTextColor(label: any) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(label.color);
+
+        if (result != null) {
+            var rgb = {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            };
+
+            // http://www.w3.org/TR/AERT#color-contrast
+            var o = Math.round(((rgb.r * 299) + (rgb.g * 587) + (rgb.b * 114)) / 1000);
+
+            return (o > 125) ? '#000000' : '#FFFFFF';
+        }
+
+        return "#FFFFFF";
+    }
 }
