@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27705.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CB2FB5E1-8269-4645-914C-7AD21E216317}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Aggregit.Web", "src\Aggregit.Web\Aggregit.Web.fsproj", "{7E3932DF-0BD7-4E7F-BD1A-B36CE2BE26AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aggregit.Web", "src\Aggregit.Web\Aggregit.Web.csproj", "{B046EC14-73EF-40E0-8728-2504B1BA9730}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7E3932DF-0BD7-4E7F-BD1A-B36CE2BE26AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E3932DF-0BD7-4E7F-BD1A-B36CE2BE26AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E3932DF-0BD7-4E7F-BD1A-B36CE2BE26AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E3932DF-0BD7-4E7F-BD1A-B36CE2BE26AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B046EC14-73EF-40E0-8728-2504B1BA9730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B046EC14-73EF-40E0-8728-2504B1BA9730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B046EC14-73EF-40E0-8728-2504B1BA9730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B046EC14-73EF-40E0-8728-2504B1BA9730}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7E3932DF-0BD7-4E7F-BD1A-B36CE2BE26AE} = {CB2FB5E1-8269-4645-914C-7AD21E216317}
+		{B046EC14-73EF-40E0-8728-2504B1BA9730} = {CB2FB5E1-8269-4645-914C-7AD21E216317}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88951FFB-AD85-4384-9800-625EBD858472}
