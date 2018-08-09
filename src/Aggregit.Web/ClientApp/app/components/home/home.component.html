@@ -57,6 +57,44 @@
                     </tr>
                 </tbody>
             </table>
+            <h3>Assigned Pull Requests</h3>
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>Repo</th>
+                        <th>Title</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let issue of assignedPullRequests">
+                        <td>{{issue.repository.name}}</td>
+                        <td><a href="{{issue.url}}" target="_blank">{{issue.title}}</a></td>
+                        <td>
+                            <a *ngFor="let label of issue.labels.nodes" [ngStyle]="{'background-color': '#' + label.color, 'color': getTextColor(label)}" class="githubLabel">{{label.name}}&nbsp;</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Authored Pull Requests</h3>
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th>Repo</th>
+                        <th>Title</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let issue of authoredPullRequests">
+                        <td>{{issue.repository.name}}</td>
+                        <td><a href="{{issue.url}}" target="_blank">{{issue.title}}</a></td>
+                        <td>
+                            <a *ngFor="let label of issue.labels.nodes" [ngStyle]="{'background-color': '#' + label.color, 'color': getTextColor(label)}" class="githubLabel">{{label.name}}&nbsp;</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </main>
     </div>
 </div>

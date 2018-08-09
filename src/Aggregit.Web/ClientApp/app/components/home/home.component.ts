@@ -15,6 +15,8 @@ export class HomeComponent {
     public organizations: Organization[];
     public selectedUser: GitHubUser;
     public issues: any[];
+    public authoredPullRequests: any[];
+    public assignedPullRequests: any[];
 
     constructor(private router: Router,
         private gitHubService: GitHubService) {
@@ -22,6 +24,8 @@ export class HomeComponent {
         this.selectedUser = { login: "", name: "", avatarUrl: "" };
         this.organizations = new Array<Organization>();
         this.issues = new Array<any>();
+        this.authoredPullRequests = new Array<any>();
+        this.assignedPullRequests = new Array<any>();
 
         var accessToken = window.localStorage.getItem('accessToken');
         let currentUserValue = localStorage.getItem('currentUser');
@@ -54,13 +58,17 @@ export class HomeComponent {
                             this.organizations = data;
                         });
 
-                    this.getData(this.loggedInUser.login);
+                    this.getData(this.selectedUser);
                 });
     }
 
     selectUser(login: string, name: string, avatarUrl: string) {
+        this.issues = new Array<any>();
+        this.assignedPullRequests = new Array<any>();
+        this.authoredPullRequests = new Array<any>();
+
         this.selectedUser = { login: login, name: name, avatarUrl: avatarUrl };
-        this.getData(login);
+        this.getData(this.selectedUser);
     }
 
     signOut() {
@@ -70,13 +78,43 @@ export class HomeComponent {
         this.router.navigate(['/login']);
     }
 
-    getData(login: string) {
-        this.gitHubService.getIssues(login)
+    getData(user: GitHubUser) {
+        this.gitHubService.getIssues(user)
             .subscribe(data => {
-                //this.selectedUser = { login: login, name: "", avatarUrl: "" };
-
                 var tempIssues = data as Array<any>;
                 this.issues = tempIssues.sort((item1: any, item2: any) => {
+                    if (item1.repository.name < item2.repository.name) {
+                        return - 1;
+                    }
+
+                    if (item1.repository.name > item2.repository.name) {
+                        return 1;
+                    }
+
+                    return 0;
+                });
+            });
+
+        this.gitHubService.getAuthoredPullRequests(user)
+            .subscribe(data => {
+                var tempPullRequests = data as Array<any>;
+                this.authoredPullRequests = tempPullRequests.sort((item1: any, item2: any) => {
+                    if (item1.repository.name < item2.repository.name) {
+                        return - 1;
+                    }
+
+                    if (item1.repository.name > item2.repository.name) {
+                        return 1;
+                    }
+
+                    return 0;
+                });
+            });
+
+        this.gitHubService.getAssignedPullRequests(user)
+            .subscribe(data => {
+                var tempPullRequests = data as Array<any>;
+                this.assignedPullRequests = tempPullRequests.sort((item1: any, item2: any) => {
                     if (item1.repository.name < item2.repository.name) {
                         return - 1;
                     }

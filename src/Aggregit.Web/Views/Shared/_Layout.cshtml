@@ -3,7 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Aggregit</title>
+    @if (!string.IsNullOrEmpty(ViewData["Title"]?.ToString()))
+    {
+        <title>@ViewData["Title"] - Aggregit</title>
+    }
+    else
+    {
+        <title>Aggregit</title>
+    }
     <base href="~/" />
     <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
     @Html.Raw(snippet.FullScript)
