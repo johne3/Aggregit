@@ -82,6 +82,17 @@ export class HomeComponent {
         this.gitHubService.getIssues(user)
             .subscribe(data => {
                 var tempIssues = data as Array<any>;
+
+                //TODO: For now, filter out issues with a "Pull Request" label. Make this 
+                //more permanent with user/org preferences
+                tempIssues = tempIssues.filter(function (issue) {
+                    var doesHavePullRequestLabel = issue.labels.nodes.filter(function (label: any) {
+                        return label.name === "Pull Request";
+                    }).length == 0;
+
+                    return doesHavePullRequestLabel;
+                });
+
                 this.issues = tempIssues.sort((item1: any, item2: any) => {
                     if (item1.repository.name < item2.repository.name) {
                         return - 1;
